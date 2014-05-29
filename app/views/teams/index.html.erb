@@ -1,0 +1,19 @@
+<h1>Teams</h1>
+
+<table>
+  <thead>
+    <tr>
+ 	  <th>Name</th>
+	  <th>Flag</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @teams.each do |team| %>
+      <tr>
+		<td><%= team.name %></td>
+		<td><img src="<%= team.flag %>" width="42" height="28" /></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

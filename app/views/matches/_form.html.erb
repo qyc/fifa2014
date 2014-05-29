@@ -1,0 +1,85 @@
+<%= form_for(@match) do |f| %>
+  <% if @match.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@match.errors.count, "error") %> prohibited this match from being saved:</h2>
+
+      <ul>
+      <% @match.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+	<div class="large-3 columns">
+	  <label class="right inline">Stage</label>
+	</div>
+	<div class="large-9 columns">
+	  <%= f.select :stage, Match::STAGES %>
+	</div>
+  </div>
+  <div class="row">
+	<div class="large-3 columns">
+	  <label class="right inline">Allow Tie?</label>
+	</div>
+	<div class="large-9 columns">
+	  <%= f.check_box :allow_tie %>
+	</div>
+  </div>
+  <div class="row">
+	<div class="large-3 columns">
+	  <label class="right inline">Point</label>
+	</div>
+	<div class="large-9 columns">
+	  <%= f.text_field :point %>
+	</div>
+  </div>
+  <div class="row">
+	<div class="large-3 columns">
+	  <label class="right inline">Date Time</label>
+	</div>
+	<div class="large-9 columns">
+	  <%= f.datetime_select :date_time %>
+	</div>
+  </div>
+  <div class="row">
+	<div class="large-3 columns">
+	  <label class="right inline">Team A</label>
+	</div>
+	<div class="large-9 columns">
+	  <%= f.collection_select :team_a_id, Team.all, :id, :name, prompt: true %>
+	</div>
+  </div>
+  <div class="row">
+	<div class="large-3 columns">
+	  <label class="right inline">Team B</label>
+	</div>
+	<div class="large-9 columns">
+	  <%= f.collection_select :team_b_id, Team.all, :id, :name, prompt: true %>
+	</div>
+  </div>
+  <div class="row">
+	<div class="large-3 columns">
+	  <label class="right inline">Winner</label>
+	</div>
+	<div class="large-9 columns">
+	  <%= f.select :winner, Match::WINNERS_FOR_SELECT, prompt: true %>
+	</div>
+  </div>
+  <div class="row">
+	<div class="large-3 columns">
+	  <label class="right inline">Penalty Kicks</label>
+	</div>
+	<div class="large-9 columns">
+	  <%= f.number_field :penalty_kicks %>
+	</div>
+  </div>
+  <div class="row">
+	<div class="large-6 large-centered columns">
+      <%= f.submit :class => "button radius round" %>
+	  <%= link_to 'Cancel', matches_path, :class => "button radius round alert right" %>
+	</div>
+  </div>
+
+<% end %>
