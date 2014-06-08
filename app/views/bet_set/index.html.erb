@@ -13,7 +13,8 @@
   </thead>
 
   <tbody>
-    <% @bet_sets_by_date.each do |key, set| %>
+	  <% @bet_sets_by_date.keys.sort.each do |key| %>
+	  <% set = @bet_sets_by_date[key] %>
       <tr>
 		<td><%= key %></td>
         <td>
