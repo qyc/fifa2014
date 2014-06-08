@@ -1,7 +1,7 @@
-Dear <%= @player.name %>, please click <a href="<%= url_for(controller: 'bets', 
+<a href="<%= url_for(
+			controller: 'bet_set', 
 			action: 'bet', 
 			only_path: false,
-			params: {
-				p: @player.uuid,
-				m: @matches.collect { |m| m.uuid }
-				}) %>">HERE</a> to submit your bets.
+			params: { q: @bet_set.uuid }) %>">
+	<%= "#{@bet_set.date} / #{@bet_set.player.name}" %>
+</a>

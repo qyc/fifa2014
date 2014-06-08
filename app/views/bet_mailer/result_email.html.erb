@@ -1,0 +1,26 @@
+<%= @date.to_s %>
+<style>
+th, td {
+	border-right: 1px solid black;
+}
+</style>
+<table>
+	<thead>
+		<tr>
+			<th>Player</th>
+			<% @matches.each do |match| %>
+			<th><%= match.team_a.name %><br />vs<br /><%= match.team_b.name %></th>
+			<% end %>
+		</tr>
+	</thead>
+	<tbody>
+		<% @players.each do |player| %>
+		<tr>
+			<td><%= player.name %></td>
+			<% @matches.each do |match| %>
+			<td><%= @results[player.id.to_s][match.id.to_s] rescue "No Result" %></td>
+			<% end %>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

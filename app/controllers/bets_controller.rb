@@ -67,8 +67,27 @@ class BetsController < ApplicationController
   end
   
   def bet
-    @player = Player.where(uuid: params[:p]).first rescue nil
-    @matches = Match.where(uuid: params[:m])
+    if params.key? :p and params.key? :m
+      @type = :submit
+      @player = Player.where(uuid: params[:p]).first rescue nil
+      @matches = Match.where(uuid: params[:m])
+    elsif params.key? :bet and params.key? :player
+      @type = :result
+      @player = Player.where(uuid: params[:player]).first rescue nil
+      if @player.present?
+        params[:bet].each do |m_id, result|
+          match = Match.where(uuid: m_id).first rescue nil
+          if match.present?
+            bet = Bet.new
+            bet.match_id = match.id
+            bet.player_id = @player.id
+            bet.winner = result
+            bet.penalty_kicks = rand(0..5) # randomly 0 - 5
+            bet.save
+          end
+        end
+      end
+    end
   end
 
   private

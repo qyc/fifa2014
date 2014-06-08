@@ -1,6 +1,6 @@
 class Match < ActiveRecord::Base
   
-  attr_accessible :uuid, :location, :date_time, :team_a_id, :team_b_id, :allow_tie, :result, :penalty_kicks, :stage, :point
+  attr_accessible :location, :date_time, :team_a_id, :team_b_id, :allow_tie, :result, :penalty_kicks, :total_score, :stage, :point
   
   STAGES = [
     "Group Stage",
@@ -18,11 +18,11 @@ class Match < ActiveRecord::Base
   ]
   
   def team_a
-    Team.find(team_a_id)
+    Team.find(team_a_id) rescue nil
   end
   
   def team_b
-    Team.find(team_b_id)
+    Team.find(team_b_id) rescue nil
   end
   
   def winner

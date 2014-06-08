@@ -76,6 +76,14 @@
 	</div>
   </div>
   <div class="row">
+	<div class="large-3 columns">
+	  <label class="right inline">Total Score</label>
+	</div>
+	<div class="large-9 columns">
+	  <%= f.number_field :total_score %>
+	</div>
+  </div>
+  <div class="row">
 	<div class="large-6 large-centered columns">
       <%= f.submit :class => "button radius round" %>
 	  <%= link_to 'Cancel', matches_path, :class => "button radius round alert right" %>
