@@ -22,6 +22,17 @@ module Fifa2014
 
     # For Foundation 5
     config.assets.precompile += %w( vendor/modernizr )
-
+    
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+       address: 'smtp.gmail.com',
+       port: '587',
+       domain: 'localhost',
+       user_name:            'fifa2014.labcentrix@gmail.com',
+       password:             'LabCentrix1',
+       authentication:       'plain',
+       enable_starttls_auto: true
+    }
+    
   end
 end
