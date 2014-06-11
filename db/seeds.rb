@@ -14,7 +14,7 @@ Player.create([
   { name: "Lia", email: "lia.sylvestri@labcentrix.com" },
   { name: "Mayura", email: "mayura.wagle@labcentrix.com" },
   { name: "Mike", email: "mike.lujan@labcentrix.com" },
-  { name: "Trung", email: "trung.nguyet@labcentrix.com" },
+  { name: "Trung", email: "trung.nguyen@labcentrix.com" },
   { name: "Xiaoyuan", email: "xiaoyuan.liu@labcentrix.com" },
   { name: "Yalun", email: "yalun.li@labcentrix.com" },
   { name: "Yucheng", email: "yucheng.qian@labcentrix.com" }
