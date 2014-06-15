@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140607093951) do
+ActiveRecord::Schema.define(version: 20140614143840) do
 
   create_table "bet_sets", force: true do |t|
     t.string   "uuid"
@@ -63,6 +63,8 @@ ActiveRecord::Schema.define(version: 20140607093951) do
     t.integer  "total_length"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "total_penalty_kicks"
+    t.integer  "total_characters"
   end
 
   create_table "teams", force: true do |t|

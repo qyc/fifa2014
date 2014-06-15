@@ -3,30 +3,27 @@
 <table>
   <thead>
     <tr>
-	  <th>Stage</th>
-	  <th>Point</th>
-	  <th>Location</th>
 	  <th>Date Time</th>
-	  <th>Team A</th>
-	  <th>Team B</th>
-	  <th>Winner</th>
-	  <th>Total Score</th>
-	  <th>Penalty</th>
+	  <th>Teams</th>
+	  <% @players.each do |player| %>
+	  <th colspan="2"><%= player.name %></th>
+	  <% end %>
     </tr>
   </thead>
 
   <tbody>
-    <% @matches.each do |match| %>
+    <% @matches.order(:created_at).each do |match| %>
       <tr>
-		<td><%= match.stage %></td>
-		<td><%= match.point %></td>
-		<td><%= match.location %></td>
-		<td><%= match.est_time.strftime("%b %-d @ %-H:%M") %></td>
-		<td><%= match.team_a.name rescue nil %></td>
-		<td><%= match.team_b.name rescue nil %></td>
-		<td><%= match.winner %></td>
-		<td><%= match.total_score %></td>
-		<td><%= match.penalty_kicks %></td>
+		<td><%= link_to match.est_time.strftime("%b %-d @ %-H"), edit_match_path(match) %></td>
+		<td><b><%= match.team_a.name rescue nil %></b> vs <b><%= match.team_b.name rescue nil %></b></td>
+		<% @players.each do |player| %>
+		<td<% if @bets[match.id.to_s].present? and @bets[match.id.to_s][player.id.to_s][:winner].eql? match.winner_name %> class="selected"<% end %>>
+			<%= @bets[match.id.to_s][player.id.to_s][:winner] if match.result.present? rescue nil %>
+		</td>
+		<td<% if @bets[match.id.to_s].present? and @bets[match.id.to_s][player.id.to_s][:total_score].eql? match.total_score %> class="selected"<% end %>>
+			<%= @bets[match.id.to_s][player.id.to_s][:total_score] if match.result.present? rescue nil %>
+		</td>
+		<% end %>
       </tr>
     <% end %>
   </tbody>

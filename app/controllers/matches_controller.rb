@@ -5,6 +5,25 @@ class MatchesController < ApplicationController
   # GET /matches.json
   def index
     @matches = Match.all
+    @players = Player.all
+    @bets = Hash.new
+    Bet.all.each do |bet|
+      @bets[bet.match_id.to_s] ||= Hash.new
+      case bet.winner
+        when 0
+          winner = "TIE"
+        when 1
+          winner = bet.match.team_a.name
+        when 2
+          winner = bet.match.team_b.name
+        else
+          winner = nil
+      end
+      @bets[bet.match_id.to_s][bet.player_id.to_s] = {
+        winner: winner,
+        total_score: bet.total_score
+      }
+    end
   end
 
   # GET /matches/1

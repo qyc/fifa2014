@@ -12,9 +12,9 @@ class Match < ActiveRecord::Base
   ]
   
   WINNERS_FOR_SELECT = [
-    [ 1, "Team A" ],
-    [ 2, "Team B" ],
-    [ 0, "TIE" ]
+    [ "Team A", 1 ],
+    [ "Team B", 2 ],
+    [ "TIE", 0 ]
   ]
   
   def team_a
@@ -25,14 +25,14 @@ class Match < ActiveRecord::Base
     Team.find(team_b_id) rescue nil
   end
   
-  def winner
+  def winner_name
     case result
       when 0
         "TIE"
       when 1
-        team_a
+        team_a.name
       when 2
-        team_b
+        team_b.name
       else
         nil
       end
