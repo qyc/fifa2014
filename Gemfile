@@ -13,6 +13,7 @@ gem 'spring',        group: :development
 gem 'foundation-rails'
 gem 'high_voltage'
 gem 'protected_attributes'
+gem 'rails_12factor'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]
