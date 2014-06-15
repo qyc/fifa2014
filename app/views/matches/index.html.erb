@@ -12,7 +12,7 @@
   </thead>
 
   <tbody>
-    <% @matches.order(:created_at).each do |match| %>
+    <% @matches.order(:date_time).each do |match| %>
       <tr>
 		<td><%= link_to match.est_time.strftime("%b %-d @ %-H"), edit_match_path(match) %></td>
 		<td><b><%= match.team_a.name rescue nil %></b> vs <b><%= match.team_b.name rescue nil %></b></td>
