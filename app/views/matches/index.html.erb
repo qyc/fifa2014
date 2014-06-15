@@ -17,10 +17,10 @@
 		<td><%= link_to match.est_time.strftime("%b %-d @ %-H"), edit_match_path(match) %></td>
 		<td><b><%= match.team_a.name rescue nil %></b> vs <b><%= match.team_b.name rescue nil %></b></td>
 		<% @players.each do |player| %>
-		<td<% if @bets[match.id.to_s].present? and @bets[match.id.to_s][player.id.to_s][:winner].eql? match.winner_name %> class="selected"<% end %>>
+		<td<% if @bets[match.id.to_s].present? and @bets[match.id.to_s][player.id.to_s].present? and @bets[match.id.to_s][player.id.to_s][:winner].eql? match.winner_name %> class="selected"<% end %>>
 			<%= @bets[match.id.to_s][player.id.to_s][:winner] if match.result.present? rescue nil %>
 		</td>
-		<td<% if @bets[match.id.to_s].present? and @bets[match.id.to_s][player.id.to_s][:total_score].eql? match.total_score %> class="selected"<% end %>>
+		<td<% if @bets[match.id.to_s].present? and @bets[match.id.to_s][player.id.to_s].present? and @bets[match.id.to_s][player.id.to_s][:total_score].eql? match.total_score %> class="selected"<% end %>>
 			<%= @bets[match.id.to_s][player.id.to_s][:total_score] if match.result.present? rescue nil %>
 		</td>
 		<% end %>
