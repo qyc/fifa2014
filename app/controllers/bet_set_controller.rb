@@ -54,4 +54,18 @@ class BetSetController < ApplicationController
     redirect_to "/bet_set/bet?q=#{params[:uuid]}"
   end
   
+  # GET /bet_sets/result
+  def result
+    @players = Player.all
+    @total_characters = 0
+    Match.all.each do |match|
+      case match.result
+      when 1
+        @total_characters += match.team_a.name.length
+      when 2
+        @total_characters += match.team_b.name.length
+      end
+    end
+  end
+  
 end
